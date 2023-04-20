@@ -1,0 +1,46 @@
+.nav {
+    width: 100%;
+    position: fixed;
+    line-height: 65px;
+    text-align: center;
+}
+
+.nav div.logo {
+    float: left;
+    width: auto;
+    height: auto;
+    padding-left: 1.5rem;
+}
+
+.nav div.logo a {
+    text-decoration: none;
+    color: #111;
+    font-size: 2rem;
+}
+
+.nav div.main_list {
+    float: right;
+}
+
+.nav div.main_list ul {
+    width: 100%;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav div.main_list ul li {
+    width: auto;
+    padding: 0;
+    padding-right: 3rem;
+}
+
+.nav div.main_list ul li a {
+    text-decoration: none;
+    color: #111;
+    line-height: 65px;
+    font-size: 1.8rem;
+}
+
+

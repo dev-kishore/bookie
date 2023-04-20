@@ -1,0 +1,43 @@
+<div class="movie-container container">
+    <nz-modal [(nzVisible)]="showModal" (nzOnCancel)="handleOk()" nzCentered>
+        <ng-container *nzModalContent>
+            <nz-result nzStatus="success" nzTitle="Tickets booked successfully!"></nz-result>
+        </ng-container>
+        <div *nzModalFooter>
+            <button nz-button nzType="primary" (click)="handleOk()">Ok</button>
+        </div>
+    </nz-modal>
+    <h1>{{movie.title}}</h1>
+    <div class="row">
+        <div class="col-4">
+            <img src="data:image/jpeg;base64,{{movie.photo.data}}" alt="Movie Image">
+            <p class="mt-3 duration">{{movie.ticketStatus}}</p>
+            <p class="mt-3">{{movie.genre}} | {{movie.movieRating}}</p>
+            <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                <nz-form-item>
+                    <nz-form-control [nzSm]="12" [nzValidateStatus]="validateForm.controls['numberOfTickets']"
+                        nzErrorTip="Please input total number of seats!">
+                        <input formControlName="numberOfTickets" id="'numberOfTickets'" nz-input placeholder="Seats" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSm]="12" [nzValidateStatus]="validateForm.controls['theatreName']"
+                        nzErrorTip="Please input theatre name!">
+                        <nz-select formControlName="theatreName" id="theatre" nz-input nzPlaceHolder="Theatre">
+                            <nz-option *ngFor="let theatre of movie.theatres" nzValue="{{theatre[0]}}"
+                                nzLabel="{{theatre[0]}}"></nz-option>
+                        </nz-select>
+                    </nz-form-control>
+                </nz-form-item>
+                <button nz-button nzType="primary">Book</button>
+            </form>
+        </div>
+        <div class="col-8">
+            <p class="description">{{movie.description}}</p>
+            <p class="duration">{{movie.duration}}</p>
+            <p class="release-date">{{movie.releaseDate}}</p>
+            <p class="view-type">{{movie.viewType}}</p>
+            <p class="languages">{{movie.language}}</p>
+        </div>
+    </div>
+</div>

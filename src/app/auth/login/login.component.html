@@ -1,0 +1,28 @@
+<div class="container">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your username!">
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="text" nz-input formControlName="username" placeholder="Username" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your Password!">
+                <nz-input-group nzPrefixIcon="lock">
+                    <input type="password" nz-input formControlName="password" placeholder="Password" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <div nz-row class="login-form-margin" *ngIf="!resetPassword">
+            <div nz-col [nzSpan]="12">
+                <a (click)="toggleResetPassword()">Forgot password</a>
+            </div>
+        </div>
+        <button type="submit" nz-button class="login-form-button login-form-margin" [nzType]="'primary'" *ngIf="!resetPassword">Log in</button>
+        <button type="submit" nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="resetUserPassword()" *ngIf="resetPassword">Reset</button>
+        <button nz-button class="login-form-button login-form-margin" nzType='default' (click)="toggleResetPassword()" *ngIf="resetPassword">Cancel</button>
+        <p *ngIf="!resetPassword">Or</p>
+        <a *ngIf="!resetPassword" (click)="navigateToRegister()">register now!</a>
+    </form>
+</div>

@@ -1,0 +1,24 @@
+.login-form-margin {
+    margin-bottom: 1rem;
+}
+
+.login-form-button {
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+p {
+    display: inline;
+    padding-right: 5px;
+}
+
+[nz-form] {
+    width: 20rem;
+}
