@@ -1,0 +1,140 @@
+<nz-table #basicTable [nzData]="movies">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Tickets</th>
+            <th>Ticket Status</th>
+            <th> <button nz-button nzType="primary" (click)="showModal()">Add Movie</button></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data">
+            <td>{{ data.title }}</td>
+            <td>{{ data.location }}</td>
+            <td>{{ data.tickets }}</td>
+            <td>{{ data.ticketStatus }}</td>
+            <td>
+                <span role="button" (click)="deleteMovie(data.id)" nz-icon nzType="delete" nzTheme="outline"></span>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add Movie" [nzFooter]="null">
+    <ng-container *nzModalContent>
+      <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">Title</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <input nz-input formControlName="title" />
+            <div
+              *ngIf="movieForm.get('title').invalid && (movieForm.get('title').dirty || movieForm.get('title').touched)"
+              class="error-message">Title is required.</div>
+          </nz-form-control>
+        </nz-form-item>
+  
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">Description</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <textarea nz-input formControlName="description"></textarea>
+            <div
+              *ngIf="movieForm.get('description').invalid && (movieForm.get('description').dirty || movieForm.get('description').touched)"
+              class="error-message">Description is required.</div>
+          </nz-form-control>
+        </nz-form-item>
+  
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">Genre</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <input nz-input formControlName="genre" />
+            <div
+              *ngIf="movieForm.get('genre').invalid && (movieForm.get('genre').dirty || movieForm.get('genre').touched)"
+              class="error-message">Genre is required.</div>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">Duration</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <input nz-input formControlName="duration" />
+            <div
+              *ngIf="movieForm.get('duration').invalid && (movieForm.get('duration').dirty || movieForm.get('duration').touched)"
+              class="error-message">Duration is required.</div>
+          </nz-form-control>
+        </nz-form-item>
+  
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">Movie Rating</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <input nz-input formControlName="movieRating"/>
+            <div
+              *ngIf="movieForm.get('movieRating').invalid && (movieForm.get('movieRating').dirty || movieForm.get('movieRating').touched)"
+              class="error-message">Movie Rating is required.</div>
+          </nz-form-control>
+        </nz-form-item>
+  
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">Language</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <input nz-input formControlName="language" />
+            <div
+              *ngIf="movieForm.get('language').invalid && (movieForm.get('language').dirty || movieForm.get('language').touched)"
+              class="error-message">Language is required.</div>
+          </nz-form-control>
+        </nz-form-item>
+  
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">View Type</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <input nz-input formControlName="viewType" />
+            <div
+              *ngIf="movieForm.get('viewType').invalid && (movieForm.get('viewType').dirty || movieForm.get('viewType').touched)"
+              class="error-message">View Type is required.</div>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">Release Date</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <input nz-input formControlName="releaseDate" />
+            <div
+              *ngIf="movieForm.get('releaseDate').invalid && (movieForm.get('releaseDate').dirty || movieForm.get('releaseDate').touched)"
+              class="error-message">Release Date is required.</div>
+          </nz-form-control>
+        </nz-form-item>
+  
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">Location</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <input nz-input formControlName="location" />
+            <div
+              *ngIf="movieForm.get('location').invalid && (movieForm.get('location').dirty || movieForm.get('location').touched)"
+              class="error-message">Location is required.</div>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">Theatres</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <input nz-input formControlName="theatres" placeholder="Name:No. of seats, Name:No. of seats, ..."/>
+            <div
+              *ngIf="movieForm.get('theatres').invalid && (movieForm.get('theatres').dirty || movieForm.get('theatres').touched)"
+              class="error-message">Theatre Details is required.</div>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSm]="8" [nzXs]="24">Image Upload</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <input type="file" (change)="onFileChange($event)" accept=".jpg, .png" />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 16, offset: 8 }">
+            <button nz-button nzType="primary" [disabled]="!movieForm.valid">Add</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </ng-container>
+</nz-modal>

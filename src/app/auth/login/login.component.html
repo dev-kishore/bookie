@@ -20,7 +20,7 @@
             </div>
         </div>
         <button type="submit" nz-button class="login-form-button login-form-margin" [nzType]="'primary'" *ngIf="!resetPassword">Log in</button>
-        <button type="submit" nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="resetUserPassword()" *ngIf="resetPassword">Reset</button>
+        <button type="submit" nz-button class="login-form-button login-form-margin" [nzType]="'primary'" *ngIf="resetPassword">Reset</button>
         <button nz-button class="login-form-button login-form-margin" nzType='default' (click)="toggleResetPassword()" *ngIf="resetPassword">Cancel</button>
         <p *ngIf="!resetPassword">Or</p>
         <a *ngIf="!resetPassword" (click)="navigateToRegister()">register now!</a>

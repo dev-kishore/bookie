@@ -33,10 +33,6 @@ export class LoginComponent implements OnInit {
     this.resetPassword = !this.resetPassword
     this.validateForm.reset()
   }
-  
-  resetUserPassword() {
-
-  }
 
   submitForm(): void {
     if (this.validateForm.valid) {
@@ -58,7 +54,7 @@ export class LoginComponent implements OnInit {
             }
           },
           error: (error) => {
-
+            console.log(error)
           }
         })
         this.validateForm.reset()
@@ -72,7 +68,7 @@ export class LoginComponent implements OnInit {
               localStorage.setItem('bookie-token', response.token)
               this.appService.loginStatus = true
               this.appService.username = response.username
-              this.router.navigateByUrl('app/user/movies')
+              this.appService.username === "admin" ? this.router.navigateByUrl('app/admin/dashboard') : this.router.navigateByUrl('app/user/movies')
             } else {
               this.message.error(response.message, {
                 nzDuration: 3000

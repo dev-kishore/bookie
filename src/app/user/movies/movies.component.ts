@@ -13,6 +13,7 @@ export class MoviesComponent implements OnInit {
   constructor(private appService: AppService, private userService: UserService,private router: Router) { }
 
   movies: any[] = []
+
   initialPage: string = ""
 
   loading = true
@@ -38,7 +39,7 @@ export class MoviesComponent implements OnInit {
         this.appService.movies.next(response)
       },
       error: (error) => {
-
+        console.log(error)
       }
     })
   }

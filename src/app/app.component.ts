@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { Router } from '@angular/router';
 
@@ -7,20 +7,26 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  
   title = 'bookie';
 
   movieSuggestions: string[] = []
 
+  searchTerm: string = ""
+
   constructor(public appService: AppService, private router: Router) {}
+
+  ngOnInit(): void {
+    localStorage.removeItem('bookie-token')
+  }
 
   logout() {
     localStorage.removeItem('bookie-token')
     this.appService.loginStatus = false
+    this.appService.username = ""
     this.router.navigateByUrl('app/user/movies')
   }
-
-  searchTerm: string = ""
 
   getSuggestions(term: any) {
     this.appService.getSearchSuggestions(term.target.value).subscribe(res => {
@@ -36,7 +42,7 @@ export class AppComponent {
           this.appService.movies.next(response)
         },
         error: (error) => {
-  
+          console.log(error)
         }
       })
     } else {
@@ -45,7 +51,7 @@ export class AppComponent {
           this.appService.movies.next(response)
         },
         error: (error) => {
-  
+          console.log(error)
         }
       })
     }

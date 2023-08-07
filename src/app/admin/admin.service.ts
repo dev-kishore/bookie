@@ -17,9 +17,5 @@ export class AdminService {
   deleteMovie(id: string): Observable<any> {
     return this.http.delete(environment.baseUrl + `admin/movie/delete/${id}`)
   }
-
-  updateMovieStatus(limit: string, id: string): Observable<any> {
-    return this.http.put(environment.baseUrl + `admin/movie/${id}/update?limit=${limit}`, null)
-  }
   
 }

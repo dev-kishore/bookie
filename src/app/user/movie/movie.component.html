@@ -24,12 +24,12 @@
                     <nz-form-control [nzSm]="12" [nzValidateStatus]="validateForm.controls['theatreName']"
                         nzErrorTip="Please input theatre name!">
                         <nz-select formControlName="theatreName" id="theatre" nz-input nzPlaceHolder="Theatre">
-                            <nz-option *ngFor="let theatre of movie.theatres" nzValue="{{theatre[0]}}"
-                                nzLabel="{{theatre[0]}}"></nz-option>
+                            <nz-option *ngFor="let theatre of movie.theatres" nzValue="{{theatre[0]}}-{{theatre[1]}}"
+                                nzLabel="{{theatre[0]}} - {{theatre[1]}}"></nz-option>
                         </nz-select>
                     </nz-form-control>
                 </nz-form-item>
-                <button nz-button nzType="primary">Book</button>
+                <button nz-button nzType="primary" [disabled]="movie.ticketStatus === 'SOLD OUT'">Book</button>
             </form>
         </div>
         <div class="col-8">

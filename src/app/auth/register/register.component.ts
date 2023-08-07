@@ -3,6 +3,7 @@ import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } 
 import { AuthService } from '../auth.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Router } from '@angular/router';
+import { AppService } from 'src/app/app.service';
 
 @Component({
     selector: 'app-register',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
     validateForm!: UntypedFormGroup;
 
-    constructor(private fb: UntypedFormBuilder, private authService: AuthService, private message: NzMessageService, private router: Router) { }
+    constructor(private fb: UntypedFormBuilder, private authService: AuthService, private message: NzMessageService, private router: Router, private appService: AppService) { }
 
     ngOnInit(): void {
         this.validateForm = this.fb.group({
@@ -38,6 +39,9 @@ export class RegisterComponent implements OnInit {
                             nzDuration: 4000
                         })
                     } else {
+                        localStorage.setItem('bookie-token', response.token)
+                        this.appService.loginStatus = true
+                        this.appService.username = response.username
                         this.message.success("Welcome!", {
                             nzDuration: 3000
                         })
@@ -45,7 +49,7 @@ export class RegisterComponent implements OnInit {
                     }
                 },
                 error: (error) => {
-
+                    console.log(error)
                 }
             })
         } else {

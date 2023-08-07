@@ -1,16 +1,12 @@
 <div class="container movies-container">
-    <div class="row ms-4 g-3">
+    <div class="row row-cols-3 ms-4 g-3">
         <div *ngFor="let movie of movies; let i = index">
-            <div class="col-3">
-                <nz-card nzHoverable style="width:240px" [nzCover]="imageTemplate" (click)="viewMovie(movie)">
-                    <nz-card-meta nzTitle="{{movie.title}}" nzDescription="{{movie.genre}}"></nz-card-meta>
-                </nz-card>
-                <ng-template #imageTemplate>
-                    <img alt="Image" src="data:image/jpeg;base64,{{movie.photo.data}}" />
-                </ng-template>
-            </div>
+            <nz-card nzHoverable style="width: 20rem" [nzCover]="imageTemplate" (click)="viewMovie(movie)">
+                <nz-card-meta nzTitle="{{movie.title}}" nzDescription="{{movie.genre}}"></nz-card-meta>
+            </nz-card>
+            <ng-template #imageTemplate>
+                <img alt="Image" src="data:image/jpeg;base64,{{movie.photo.data}}" />
+            </ng-template>
         </div>
     </div>
-
 </div>
-<nz-pagination [nzPageIndex]="1" [nzTotal]="50" (nzPageIndexChange)="pageChange($event)"></nz-pagination>

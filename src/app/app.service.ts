@@ -25,6 +25,6 @@ export class AppService {
   }
 
   getMovies(page: string): Observable<any> {
-    return this.http.get(environment.baseUrl + `user/movies/get?page=${page}&size=8`)
+    return this.http.get(environment.baseUrl + `user/movies/get?page=${page}&size=4`)
   }
 }

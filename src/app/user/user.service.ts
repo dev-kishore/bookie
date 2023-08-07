@@ -13,7 +13,7 @@ export class UserService {
   movie = new BehaviorSubject(null);
 
   bookTicket(ticket: any): Observable<any> {
-    return this.http.post(environment.baseUrl + "user/movie/ticket/book", ticket)
+    return this.http.post(environment.baseUrl + "user/ticket/book", ticket)
   }
 
 
