@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:8081/api/v1.0/moviebooking/"
+  baseUrl: "http://ec2-54-227-168-101.compute-1.amazonaws.com:8081/api/v1.0/moviebooking/"
 };
 
 /*
